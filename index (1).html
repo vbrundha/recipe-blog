@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Recipe Blog</title>
+    <style>
+        /* ====== GLOBAL STYLES ====== */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+        }
+
+        /* ====== HEADER ====== */
+        header {
+            background-color: #ff7043;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ====== MAIN CONTENT ====== */
+        .container {
+            padding: 30px;
+        }
+
+        .recipes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* ====== RECIPE CARD ====== */
+        .recipe-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.03);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 15px;
+        }
+
+        .recipe-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .recipe-content button {
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recipe-content button:hover {
+            background-color: #e85c34;
+        }
+
+        /* ====== MODAL ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff7043;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ff7043;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍴 My Recipe Blog</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Recipes</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Latest Recipes</h2>
+
+    <div class="recipes">
+        <!-- Recipe 1 -->
+        <div class="recipe-card">
+            <img src="Pasta.png" alt="Pasta">
+            <div class="recipe-content">
+                <h3>Italian Pasta</h3>
+                <p>Delicious creamy Italian pasta.</p>
+                <button onclick="openRecipe('pasta')">View Recipe</button>
+            </div>
+        </div>
+
+        <!-- Recipe 2 -->
+        <div class="recipe-card">
+            <img src="cheese-pizza.jpg" alt="Pizza">
+            <div class="recipe-content">
+                <h3>Cheese Pizza</h3>
+                <p>Classic homemade cheese pizza.</p>
+                <button onclick="openRecipe('pizza')">View Recipe</button>
+            </div>
+        </div>
+
+        <!-- Recipe 3 -->
+        <div class="recipe-card">
+            <img src="cake.webp" alt="Cake">
+            <div class="recipe-content">
+                <h3>Chocolate Cake</h3>
+                <p>Rich and moist chocolate cake.</p>
+                <button onclick="openRecipe('cake')">View Recipe</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== MODAL ====== -->
+<div class="modal" id="recipeModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeRecipe()">✖</span>
+        <h2 id="recipeTitle"></h2>
+        <p id="recipeDetails"></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 My Recipe Blog | All Rights Reserved</p>
+</footer>
+
+<script>
+    function openRecipe(recipe) {
+        const title = document.getElementById("recipeTitle");
+        const details = document.getElementById("recipeDetails");
+        const modal = document.getElementById("recipeModal");
+
+        if (recipe === "pasta") {
+            title.innerText = "Italian Pasta";
+            details.innerText =
+                "Ingredients:\n- Pasta\n- Cream\n- Garlic\n- Cheese\n\nSteps:\n1. Boil pasta\n2. Prepare sauce\n3. Mix and serve";
+        } 
+        else if (recipe === "pizza") {
+            title.innerText = "Cheese Pizza";
+            details.innerText =
+                "Ingredients:\n- Pizza dough\n- Tomato sauce\n- Cheese\n\nSteps:\n1. Prepare dough\n2. Add toppings\n3. Bake";
+        } 
+        else if (recipe === "cake") {
+            title.innerText = "Chocolate Cake";
+            details.innerText =
+                "Ingredients:\n- Flour\n- Cocoa powder\n- Sugar\n- Eggs\n\nSteps:\n1. Mix ingredients\n2. Bake\n3. Cool and serve";
+        }
+
+        modal.style.display = "flex";
+    }
+
+    function closeRecipe() {
+        document.getElementById("recipeModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
